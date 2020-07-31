@@ -29,11 +29,6 @@ export default {
             state.transactions = transactions
         },
 
-        updateTransactionMutation(state, transaction) {
-            const updateIndex = state.transactions.find(item => item.id === transaction.id)
-            Object.assign(updateIndex, transaction)
-            state.items = transaction.items
-        },
     },
 
     actions: {
@@ -49,13 +44,6 @@ export default {
             const data = await result.json()
 
             commit('retrieveTransactionsMutation', data)
-        },
-
-        async addTransactionItemAction({commit, state}, dto) {
-            const result = await transactionApi.addItem(dto)
-            const data = await result.json()
-
-            commit('updateTransactionMutation', data)
         },
     }
 }

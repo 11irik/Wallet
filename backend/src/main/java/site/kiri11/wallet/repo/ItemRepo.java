@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import site.kiri11.wallet.domain.Account;
 import site.kiri11.wallet.domain.Category;
 import site.kiri11.wallet.domain.Item;
+import site.kiri11.wallet.domain.Transaction;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public interface ItemRepo extends JpaRepository<Item, Long> {
 
@@ -19,6 +21,7 @@ public interface ItemRepo extends JpaRepository<Item, Long> {
             "where t.account_id = ?1 and tag_id = ?2 and date between ?3 and ?4", nativeQuery = true)
     Double getTagSum(Long accountId, Long tagId, LocalDate start, LocalDate end);
 
+    Set<Item> findByTransaction(Transaction transaction);
 
 
 }

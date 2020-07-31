@@ -8,7 +8,6 @@ export default {
     remove: id => transactions.remove({id}),
     get: id => transactions.get({id}),
     getAccountTransaction: account => Vue.http.post('/transaction/account', account),
-    addItem: dto => Vue.http.post('/transaction/item', dto),
     getTransactions: dto => Vue.http.post('/transaction/request', dto),
 
     getGroups: dto => Vue.http.post('/transaction/group', dto),

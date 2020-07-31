@@ -3,7 +3,7 @@
 
         <!--            <v-toolbar-title>Транзакции</v-toolbar-title>-->
 
-        <DatePicker></DatePicker>
+        <RangeDatePicker></RangeDatePicker>
 
         <v-btn @click="getTransactions">Найти</v-btn>
 
@@ -17,7 +17,7 @@
 <script>
 
     import TransactionDialog from "../components/dialogs/TransactionDialog.vue";
-    import DatePicker from "../components/DatePicker.vue";
+    import RangeDatePicker from "../components/RangeDatePicker.vue";
     import TransactionList from "../components/lists/TransactionList.vue";
     import {mapState} from "vuex";
 
@@ -26,7 +26,7 @@
 
         components: {
             TransactionDialog,
-            DatePicker,
+            RangeDatePicker,
             TransactionList,
         },
 

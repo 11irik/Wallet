@@ -20,7 +20,7 @@ public class TagService {
         this.accountService = accountService;
     }
 
-    public Tag findById(Long id, User user) {
+    public Tag findById(Long id) {
         return tagRepo.findById(id).get();
     }
 

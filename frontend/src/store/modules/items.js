@@ -24,8 +24,8 @@ export default {
     },
 
     actions: {
-        async addItemAction({ commit, state }, itemDto) {
-            const result = await itemApi.add(itemDto)
+        async addItemAction({commit, state}, dto) {
+            const result = await itemApi.add(dto)
             const data = await result.json()
 
             commit('addItemMutation', data)

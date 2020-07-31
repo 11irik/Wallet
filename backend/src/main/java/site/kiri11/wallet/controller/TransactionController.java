@@ -236,31 +236,4 @@ public class TransactionController {
         return transactionService.create(transaction, tag, vault, user);
     }
 
-    @PostMapping("item")
-    @JsonView(Views.Mid.class)
-    public Transaction addItem(@RequestBody TransactionDto dto, @AuthenticationPrincipal User user) {
-
-        Transaction transaction = transactionRepo.getOne(dto.getTransactionId());
-
-        if (dto.getItemName() == null || "".equals(dto.getItemName())) {
-            throw new IllegalArgumentException();
-        }
-
-        Tag tagDb = null;
-        if (dto.getTagId() != null) {
-            tagDb = tagRepo.findById(dto.getTagId()).get();
-        }
-        Item newItem = new Item();
-        newItem.setName(dto.getItemName());
-        newItem.setPrice(dto.getItemPrice());
-
-        newItem = itemRepo.save(newItem);
-        newItem.setTransaction(transaction);
-        newItem.setTag(tagDb);
-        newItem = itemRepo.save(newItem);
-
-        transaction.getItems().add(newItem);
-
-        return transactionRepo.save(transaction);
-    }
 }

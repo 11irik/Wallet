@@ -59,7 +59,6 @@
         },
 
         data: () => ({
-            drawer: null,
             model: 0,
             dialogAccount: false,
             accountName: '',
@@ -87,8 +86,6 @@
                 this.$store.dispatch('retrieveTransactionTagsAction', account)
                 this.$store.dispatch('retrieveVaultsAction', account)
                 this.$store.dispatch('selectAccountAction', account)
-
-                this.drawer = false
             },
 
             openDialogAccount() {

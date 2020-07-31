@@ -15,7 +15,7 @@
                     v-on="on"
             ></v-text-field>
         </template>
-        <v-date-picker v-model="date" no-title scrollable>
+        <v-date-picker v-model="date" range no-title scrollable>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
             <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
@@ -28,15 +28,15 @@
     import store from "../store/store";
 
     export default {
-        name: "DatePicker",
+        name: "RangeDatePicker",
 
         computed: {
             date: {
                 get: () => {
-                    return store.getters.date
+                    return store.getters.dates
                 },
                 set: (newValue) => {
-                    store.dispatch('setDateAction', newValue)
+                    store.dispatch('setDatesAction', newValue)
                 }
             },
         },

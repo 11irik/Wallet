@@ -52,7 +52,7 @@
         name: 'Profile',
         computed: {
             ...mapState({
-                defaultAccount: state => state.profile.profile
+                profile: state => state.profile.profile
             }),
         },
     }

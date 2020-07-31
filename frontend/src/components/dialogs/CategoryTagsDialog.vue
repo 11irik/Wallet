@@ -57,14 +57,13 @@
         name: "CategoryTagsDialog",
 
         props: {
-            dialog: Boolean,
-            // selectedCategory: Object
+            value: Boolean,
         },
 
         computed: {
             show: {
                 get() {
-                    return this.dialog
+                    return this.value
                 },
                 set(value) {
                     this.$emit('input', value)

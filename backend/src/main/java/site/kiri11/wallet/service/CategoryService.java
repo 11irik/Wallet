@@ -35,14 +35,14 @@ public class CategoryService {
 
     public Category addTag(Long categoryId, Long tagId, User user) {
         Category categoryDb = categoryRepo.findById(categoryId).get();
-        Tag tagDb = tagService.findById(tagId, user);
+        Tag tagDb = tagService.findById(tagId);
         categoryDb.getTags().add(tagDb);
         return categoryRepo.save(categoryDb);
     }
 
     public Category removeTag(Long categoryId, Long tagId, User user) {
         Category categoryDb = categoryRepo.findById(categoryId).get();
-        Tag tagDb = tagService.findById(tagId, user);
+        Tag tagDb = tagService.findById(tagId);
         categoryDb.getTags().remove(tagDb);
         return categoryRepo.save(categoryDb);
     }

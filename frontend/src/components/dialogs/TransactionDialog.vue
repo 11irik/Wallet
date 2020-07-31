@@ -27,33 +27,14 @@
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field label="Описание" required v-model="description"></v-text-field>
                         </v-col>
+
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field label="Сумма" hint="Сумма в рублях" required v-model="sum"></v-text-field>
                         </v-col>
-                        <!--                                FIXME-->
 
-                        <!--                        <v-col cols="12" sm="6" md="4">-->
-                            <!--                            <v-menu-->
-                            <!--                                    v-model="menu"-->
-                            <!--                                    :close-on-content-click="false"-->
-                            <!--                                    transition="scale-transition"-->
-                            <!--                                    offset-y-->
-                            <!--                                    max-width="290px"-->
-                            <!--                                    min-width="290px"-->
-                            <!--                                <template v-slot:activator="{ on }">-->
-                            <!--                                    <v-text-field-->
-                            <!--                                            v-model="computedDateFormatted"-->
-                            <!--                                            label="Дата"-->
-                            <!--                                            hint="ММ-ДД-ГГГГ"-->
-                            <!--                                            persistent-hint-->
-
-                            <!--                                            readonly-->
-                            <!--                                            v-on="on"-->
-                            <!--                                    ></v-text-field>-->
-                            <!--                                </template>-->
-                            <!--                                <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>-->
-                            <!--                            </v-menu>-->
-<!--                        </v-col>-->
+                        <v-col cols="12" sm="6" md="4">
+                            <DatePicker></DatePicker>
+                        </v-col>
                         <v-col cols="12" sm="6" md="4">
                             <v-select
                                     :items="transactionTags"
@@ -90,9 +71,14 @@
 
 <script>
     import {mapState} from "vuex";
+    import DatePicker from "../DatePicker.vue";
 
     export default {
         name: "TransactionDialog",
+
+        components: {
+            DatePicker
+        },
 
         props: {
             value: Boolean
@@ -112,6 +98,7 @@
                 transactionTags: state => state.transactionTags.transactionTags,
                 tags: state => state.tags.tags,
                 defaultAccount: state => state.defaultAccount.defaultAccount,
+                date: state => state.date.date,
             }),
         },
 
@@ -141,20 +128,6 @@
                 this.$store.dispatch('addTransactionAction', dto)
 
                 this.close()
-            },
-
-            formatDate(date) {
-                if (!date) return null
-
-                const [year, month, day] = date.split('-')
-                return `${month}/${day}/${year}`
-            },
-
-            parseDate(date) {
-                if (!date) return null
-
-                const [month, day, year] = date.split('/')
-                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
             },
         },
     }

@@ -1,6 +1,5 @@
 import categoryApi from '../../api/category';
 
-
 export default {
     state: {
         categories: frontendData.categories,

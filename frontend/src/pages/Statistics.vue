@@ -3,7 +3,7 @@
         <div id="app">
             <v-row>
                 <v-col cols="12" sm="3">
-                    <DatePicker></DatePicker>
+                    <RangeDatePicker></RangeDatePicker>
                     <v-btn @click="getData">Найти</v-btn>
                 </v-col>
                 <v-card-title>Всего транзакций за период совершено на: {{sum}} р.</v-card-title>
@@ -30,7 +30,7 @@
     import BarChart from "components/charts/BarChart.vue";
     import LineChart from "components/charts/LineChart.vue"
     import PieChartUser from "components/charts/PieChartUser.vue";
-    import DatePicker from "../components/DatePicker.vue";
+    import RangeDatePicker from "../components/RangeDatePicker.vue";
     import {mapGetters, mapState} from "vuex";
 
 
@@ -41,7 +41,7 @@
             BarChart,
             LineChart,
             PieChartUser,
-            DatePicker
+            RangeDatePicker
         },
 
         created: function () {

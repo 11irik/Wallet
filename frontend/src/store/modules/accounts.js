@@ -1,5 +1,4 @@
 import accountApi from '../../api/account'
-import userApi from '../../api/user'
 
 export default {
     state: {
@@ -27,8 +26,6 @@ export default {
                 ...state.accounts.slice(updateIndex + 1)
             ]
         },
-
-
     },
 
     actions: {
@@ -37,7 +34,5 @@ export default {
             const data = await result.json()
             commit('addAccountMutation', data)
         },
-
-
     }
 }

@@ -49,7 +49,6 @@
 
         data: () => ({
             dialogItems: false,
-            selectedTransaction: '',
         }),
 
         computed: {
@@ -61,7 +60,8 @@
 
         methods: {
             openDialogItems(transaction) {
-                this.selectedTransaction = transaction
+                this.$store.dispatch('selectTransactionAction', transaction)
+                this.$store.dispatch('retrieveItemsAction', transaction)
                 this.dialogItems = true
             },
         },

@@ -35,23 +35,10 @@
                         </v-row>
                     </v-row>
 
-                    <!--                        {{items}}-->
-                    <!--                    <v-list :key="keyUp">-->
-                    <!--                        <v-toolbar-title>Покупки</v-toolbar-title>-->
-                    <!--                        <v-list-item-->
-                    <!--                                v-for="item in itemList"-->
-                    <!--                                :key="item.id"-->
-                    <!--                                @click="deleteItem(item)"-->
-                    <!--                        >-->
-                    <!--                            <v-list-item-content>-->
-                    <!--                                <v-list-item-title>Описание: {{item.name}}</v-list-item-title>-->
-                    <!--                                <v-spacer></v-spacer>-->
-                    <!--                                <v-list-item-title>цена: {{item.price}} р.</v-list-item-title>-->
-                    <!--                                <v-list-item-subtitle v-if="item.tag">метка: {{item.tag.name}}-->
-                    <!--                                </v-list-item-subtitle>-->
-                    <!--                            </v-list-item-content>-->
-                    <!--                        </v-list-item>-->
-                    <!--                    </v-list>-->
+
+                    <ItemList></ItemList>
+
+
                 </v-container>
             </v-card-text>
         </v-card>
@@ -61,9 +48,14 @@
 
 <script>
     import {mapState} from "vuex";
+    import ItemList from "../lists/ItemList.vue";
 
     export default {
         name: "TransactionItemsDialog",
+
+        components: {
+            ItemList
+        },
 
         props: {
             value: Boolean
@@ -81,16 +73,15 @@
             ...mapState({
                 tags: state => state.tags.tags,
                 defaultAccount: state => state.defaultAccount.defaultAccount,
+                selectedTransaction: state => state.selectedTransaction.selectedTransaction
             }),
         },
 
         data() {
             return {
-                selectedTransaction: '',
                 itemDescription: '',
                 itemPrice: '',
                 itemTag: '',
-                itemList: []
             }
         },
 
@@ -107,12 +98,11 @@
                     tagId: this.itemTag
                 };
 
-                this.$store.dispatch('addTransactionItemAction', dto)
+                this.$store.dispatch('addItemAction', dto)
 
                 this.itemDescription = ''
                 this.itemPrice = ''
                 this.itemTag = ''
-                this.itemList = this.selectedTransaction.items
             },
 
             deleteItem(item) {

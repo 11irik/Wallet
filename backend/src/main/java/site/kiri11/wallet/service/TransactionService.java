@@ -1,20 +1,14 @@
 package site.kiri11.wallet.service;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import site.kiri11.wallet.domain.Tag;
 import site.kiri11.wallet.domain.Transaction;
 import site.kiri11.wallet.domain.TransactionTag;
 import site.kiri11.wallet.domain.User;
 import site.kiri11.wallet.domain.Vault;
-import site.kiri11.wallet.dto.TransactionDto;
 import site.kiri11.wallet.repo.TagRepo;
 import site.kiri11.wallet.repo.TransactionRepo;
 import site.kiri11.wallet.repo.TransactionTagRepo;
 import site.kiri11.wallet.repo.VaultRepo;
-
-import java.time.LocalDate;
 
 @Service
 public class TransactionService {
@@ -61,5 +55,9 @@ public class TransactionService {
         transaction.setUser(user);
 
         return transactionRepo.save(transaction);
+    }
+
+    public Transaction getById(Long id) {
+        return transactionRepo.getOne(id);
     }
 }
