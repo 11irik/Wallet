@@ -50,10 +50,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "CategoryTagsDialog",
+        name: 'CategoryTagsDialog',
 
         props: {
             visible: Boolean,
@@ -70,9 +70,9 @@
 
         methods: {
             addTag(tag) {
-                const dto = {
-                    "categoryId": this.category.id,
-                    "tagId": tag.id
+                let dto = {
+                    'categoryId': this.category.id,
+                    'tagId': tag.id
                 }
 
                 this.$store.dispatch('insertTagAction', dto)
@@ -80,9 +80,9 @@
 
 
             removeTag(tag) {
-                const dto = {
-                    "categoryId": this.category.id,
-                    "tagId": tag.id
+                let dto = {
+                    'categoryId': this.category.id,
+                    'tagId': tag.id
                 }
 
                 this.$store.dispatch('removeTagAction', dto)

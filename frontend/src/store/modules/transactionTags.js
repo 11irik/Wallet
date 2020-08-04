@@ -7,23 +7,20 @@ export default {
 
     getters: {
         transactionTags: state => state.transactionTags,
-
     },
 
     mutations: {
         retrieveTransactionTagsMutation(state, transactionTags) {
             state.transactionTags = transactionTags
         },
-
     },
 
     actions: {
         async retrieveTransactionTagsAction({ commit }, account) {
-            const result = await transactionTagApi.getAll()
-            const data = await result.json()
+            let result = await transactionTagApi.getAll()
+            let data = await result.json()
 
             commit('retrieveTransactionTagsMutation', data)
         },
-
     }
 }

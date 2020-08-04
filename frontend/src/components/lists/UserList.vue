@@ -38,14 +38,14 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import UserDialog from "../dialogs/UserDialog.vue";
+    import {mapState} from 'vuex';
+    import UserDialog from '../dialogs/UserDialog.vue';
 
     export default {
-        name: "UserList",
+        name: 'UserList',
 
         components: {
-            UserDialog
+            UserDialog,
         },
 
         data() {
@@ -63,11 +63,11 @@
 
         methods: {
             openUserDialog() {
-                this.dialogUser = true
+                this.dialogUser = true;
             },
 
             handleCloseUserDialog() {
-                this.dialogUser = false
+                this.dialogUser = false;
             }
         }
     }

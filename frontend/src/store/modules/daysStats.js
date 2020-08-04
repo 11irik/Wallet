@@ -1,4 +1,4 @@
-import transactionApi from "../../api/transaction";
+import transactionApi from '../../api/transaction';
 
 export default {
     state: {
@@ -11,23 +11,22 @@ export default {
 
     mutations: {
         retrieveDaysStatsMutation(state, stats) {
-            var values = []
-            var labels = []
+            let values = []
+            let labels = []
             let a = stats
-            for (var key in a) {
+            for (let key in a) {
                 labels.push(key)
                 values.push(a[key])
             }
 
-            let b = [labels, values]
-            state.daysStats = b
+            state.daysStats = [labels, values]
         },
     },
 
     actions: {
         async retrieveDaysStatsAction({ commit, state }, dto) {
-            const result = await transactionApi.getDays(dto)
-            const data = await result.json()
+            let result = await transactionApi.getDays(dto)
+            let data = await result.json()
 
             commit('retrieveDaysStatsMutation', data)
         },

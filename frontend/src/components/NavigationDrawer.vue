@@ -44,18 +44,18 @@
 </template>
 
 <script>
-    import AccountDialog from "./dialogs/AccountDialog.vue";
-    import {mapState} from "vuex";
+    import AccountDialog from './dialogs/AccountDialog.vue';
+    import {mapState} from 'vuex';
 
     export default {
-        name: "NavigationDrawer",
+        name: 'NavigationDrawer',
 
         components: {
             AccountDialog,
         },
 
         props: {
-            value: Boolean
+            value: Boolean,
         },
 
         data: () => ({
@@ -65,32 +65,32 @@
         computed: {
             visible: {
                 get() {
-                    return this.value
+                    return this.value;
                 },
                 set(value) {
-                    this.$emit('input', value)
+                    this.$emit('input', value);
                 }
             },
             ...mapState({
-                accounts: state => state.accounts.accounts
+                accounts: state => state.accounts.accounts,
             }),
         },
 
         methods: {
             selectAccount(account) {
-                this.$store.dispatch('retrieveCategoryAction', account)
-                this.$store.dispatch('retrieveTagsAction', account)
-                this.$store.dispatch('retrieveTransactionTagsAction', account)
-                this.$store.dispatch('retrieveVaultsAction', account)
-                this.$store.dispatch('selectAccountAction', account)
+                this.$store.dispatch('retrieveCategoryAction', account);
+                this.$store.dispatch('retrieveTagsAction', account);
+                this.$store.dispatch('retrieveTransactionTagsAction', account);
+                this.$store.dispatch('retrieveVaultsAction', account);
+                this.$store.dispatch('selectAccountAction', account);
             },
 
             openDialogAccount() {
-                this.dialogAccount = true
+                this.dialogAccount = true;
             },
 
             handleCloseAccountDialog() {
-                this.dialogAccount = false
+                this.dialogAccount = false;
             },
         },
     }

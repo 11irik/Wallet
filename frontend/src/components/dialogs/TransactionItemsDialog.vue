@@ -44,14 +44,14 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import ItemList from "../lists/ItemList.vue";
+    import {mapState} from 'vuex';
+    import ItemList from '../lists/ItemList.vue';
 
     export default {
-        name: "TransactionItemsDialog",
+        name: 'TransactionItemsDialog',
 
         components: {
-            ItemList
+            ItemList,
         },
 
         props: {
@@ -63,7 +63,7 @@
             ...mapState({
                 tags: state => state.tags.tags,
                 defaultAccount: state => state.defaultAccount.defaultAccount,
-                selectedTransaction: state => state.selectedTransaction.selectedTransaction
+                selectedTransaction: state => state.selectedTransaction.selectedTransaction,
             }),
         },
 
@@ -77,7 +77,7 @@
 
         methods: {
             addItem() {
-                const dto = {
+                let dto = {
                     transactionId: this.selectedTransaction.id,
                     itemName: this.itemDescription,
                     itemPrice: this.itemPrice,

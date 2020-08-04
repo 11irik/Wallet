@@ -13,13 +13,13 @@
 
 <script>
 
-    import TransactionDialogButton from "../components/TransactionDialogButton.vue";
-    import RangeDatePicker from "../components/RangeDatePicker.vue";
-    import TransactionList from "../components/lists/TransactionList.vue";
-    import {mapState} from "vuex";
+    import TransactionDialogButton from '../components/TransactionDialogButton.vue';
+    import RangeDatePicker from '../components/RangeDatePicker.vue';
+    import TransactionList from '../components/lists/TransactionList.vue';
+    import {mapState} from 'vuex';
 
     export default {
-        name: "Transactions",
+        name: 'Transactions',
 
         components: {
             TransactionDialogButton,
@@ -41,13 +41,14 @@
                     dateStart: this.dates[0],
                     dateEnd: this.dates[1]
                 };
-                this.$store.dispatch('retrieveTransactionsAction', dto)
+                this.$store.dispatch('retrieveTransactionsAction', dto);
             },
         },
 
         created() {
-            this.getTransactions()
-        }
+            this.getTransactions();
+        },
+
     }
 </script>
 

@@ -46,16 +46,16 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import {mapState} from 'vuex';
 
     export default {
         name: 'Profile',
         computed: {
             ...mapState({
-                profile: state => state.profile.profile
+                profile: state => state.profile.profile,
             }),
         },
-    }
+    };
 </script>
 
 <style scoped>

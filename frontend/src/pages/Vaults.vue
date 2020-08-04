@@ -6,11 +6,11 @@
 </template>
 
 <script>
-    import VaultDialogButton from "../components/VaultDialogButton.vue";
-    import VaultList from "../components/lists/VaultList.vue";
+    import VaultDialogButton from '../components/VaultDialogButton.vue';
+    import VaultList from '../components/lists/VaultList.vue';
 
     export default {
-        name: "Vaults",
+        name: 'Vaults',
         components: {VaultDialogButton, VaultList},
     }
 </script>

@@ -1,5 +1,5 @@
-import userApi from "../../api/user";
-import accountApi from "../../api/account";
+import userApi from '../../api/user';
+import accountApi from '../../api/account';
 
 export default {
     state: {
@@ -18,15 +18,14 @@ export default {
 
     actions: {
         async selectAccountAction({ commit, state }, account) {
-            const result = await userApi.setAccount(account)
+            let result = await userApi.setAccount(account)
 
             commit('selectAccountMutation', account)
         },
 
         async inviteUserAction({commit, state}, dto) {
 
-            const result = await accountApi.addUser(dto)
+            let result = await accountApi.addUser(dto)
         },
-
     }
 }

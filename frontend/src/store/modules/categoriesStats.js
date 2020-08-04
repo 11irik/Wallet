@@ -1,4 +1,4 @@
-import transactionApi from "../../api/transaction";
+import transactionApi from '../../api/transaction';
 
 export default {
     state: {
@@ -11,8 +11,8 @@ export default {
 
     mutations: {
         retrieveCategoriesStatsMutation(state, stats) {
-            const values = [];
-            const labels = [];
+            let values = [];
+            let labels = [];
             let a = stats
             for (const key in a) {
                 labels.push(key)
@@ -25,8 +25,8 @@ export default {
 
     actions: {
         async retrieveCategoriesStatsAction({ commit, state }, dto) {
-            const result = await transactionApi.getGroups(dto)
-            const data = await result.json()
+            let result = await transactionApi.getGroups(dto)
+            let data = await result.json()
 
             commit('retrieveCategoriesStatsMutation', data)
         },

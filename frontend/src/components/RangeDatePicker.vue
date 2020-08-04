@@ -24,28 +24,26 @@
 </template>
 
 <script>
-    import store from "../store/store";
+    import store from '../store/store';
 
     export default {
-        name: "RangeDatePicker",
+        name: 'RangeDatePicker',
 
         computed: {
             date: {
                 get: () => {
-                    return store.getters.dates
+                    return store.getters.dates;
                 },
                 set: (newValue) => {
                     if (newValue[0] > newValue[1]){
-                        let tmp = newValue[0]
-                        newValue[0] = newValue[1]
-                        newValue[1] = tmp
+                        let tmp = newValue[0];
+                        newValue[0] = newValue[1];
+                        newValue[1] = tmp;
                     }
-                    store.dispatch('setDatesAction', newValue)
+                    store.dispatch('setDatesAction', newValue);
                 }
             },
         },
-
-        methods: {},
 
         data: () => ({
             visible: false,

@@ -18,7 +18,7 @@ export default {
         },
 
         updateAccountMutation(state, account) {
-            const updateIndex = state.accounts.findIndex(item => item.id === account.id)
+            let updateIndex = state.accounts.findIndex(item => item.id === account.id)
 
             state.accounts = [
                 ...state.accounts.slice(0, updateIndex),
@@ -30,8 +30,8 @@ export default {
 
     actions: {
         async addAccountAction({ commit, state }, account) {
-            const result = await accountApi.add(account)
-            const data = await result.json()
+            let result = await accountApi.add(account)
+            let data = await result.json()
             commit('addAccountMutation', data)
         },
     }

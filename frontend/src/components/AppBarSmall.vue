@@ -50,11 +50,11 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import NavigationDrawer from "./NavigationDrawer.vue";
+    import {mapState} from 'vuex';
+    import NavigationDrawer from './NavigationDrawer.vue';
 
     export default {
-        name: "AppBarSmall",
+        name: 'AppBarSmall',
 
         components: {
             NavigationDrawer,
@@ -75,44 +75,43 @@
 
         methods: {
             showVaults() {
-                this.$router.push('/vaults')
+                this.$router.push('/vaults');
             },
 
             showStats() {
-                this.$router.push('/stats')
+                this.$router.push('/stats');
             },
 
             showHome() {
-                this.$router.push('/')
+                this.$router.push('/');
             },
 
             showProfile() {
-                this.$router.push('/profile')
+                this.$router.push('/profile');
             },
 
             showTransactions() {
-                this.$router.push('/transactions')
+                this.$router.push('/transactions');
             },
 
             showAuth() {
-                this.$router.push('/auth')
+                this.$router.push('/auth');
             },
 
             exit() {
-                this.$store.dispatch('cleanProfileAction')
-                this.$router.push('/logout')
+                this.$store.dispatch('cleanProfileAction');
+                this.$router.push('/logout');
             },
 
             selectAccount(account) {
-                this.$store.dispatch('retrieveCategoryAction', account)
-
-                this.drawer = false
+                this.$store.dispatch('retrieveCategoryAction', account);
+                this.drawer = false;
             },
         },
 
         beforeMount() {
             if (!this.profile) {
-                this.$router.replace('/auth')
+                this.$router.replace('/auth');
             }
         },
     }

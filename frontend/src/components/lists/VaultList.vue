@@ -25,20 +25,16 @@
                         <v-icon dark>mdi-cash</v-icon>
                     </v-list-item-avatar>
                 </v-list-item>
-
-                <!--                    <v-card-actions>-->
-                <!--                        <v-btn text>Открыть тразакции</v-btn>-->
-                <!--                    </v-card-actions>-->
             </v-card>
         </v-col>
     </v-row>
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "VaultList",
+        name: 'VaultList',
 
         computed: {
             ...mapState({
@@ -53,8 +49,6 @@
                 sum: '',
             }
         },
-
-        methods: {}
     }
 </script>
 

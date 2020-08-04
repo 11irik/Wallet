@@ -24,10 +24,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "AccountDialog",
+        name: 'AccountDialog',
 
         props: {
             visible: Boolean,
@@ -48,14 +48,12 @@
 
         methods: {
             addAccount() {
-                const acc = {name: this.accountName};
-                this.$store.dispatch('addAccountAction', acc)
-
-                this.accountName = ''
-                this.onClose()
+                let acc = {name: this.accountName};
+                this.$store.dispatch('addAccountAction', acc);
+                this.accountName = '';
+                this.onClose();
             },
         },
-
     }
 </script>
 

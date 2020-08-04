@@ -72,14 +72,14 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import DatePicker from "./DatePicker.vue";
+    import {mapState} from 'vuex';
+    import DatePicker from './DatePicker.vue';
 
     export default {
-        name: "TransactionDialog",
+        name: 'TransactionDialog',
 
         components: {
-            DatePicker
+            DatePicker,
         },
 
         computed: {
@@ -97,17 +97,17 @@
                 vaultId: '',
                 sum: '',
                 selectedTransaction: '',
-                activator: false
+                activator: false,
             }
         },
 
         methods: {
             close() {
-                this.activator = false
+                this.activator = false;
             },
 
             createTransaction() {
-                const dto = {
+                let dto = {
                     description: this.description,
                     vaultId: this.vaultId,
                     sum: this.sum,
@@ -115,7 +115,6 @@
                     transactionTagId: this.transactionTagId
                 };
                 this.$store.dispatch('addTransactionAction', dto)
-
                 this.close()
             },
         },

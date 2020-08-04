@@ -25,15 +25,15 @@ export default {
 
     actions: {
         async addItemAction({commit, state}, dto) {
-            const result = await itemApi.add(dto)
-            const data = await result.json()
+            let result = await itemApi.add(dto)
+            let data = await result.json()
 
             commit('addItemMutation', data)
         },
 
         async retrieveItemsAction({ commit, dispatch }, transaction) {
-            const result = await itemApi.getTransactionItems(transaction)
-            const data = await result.json()
+            let result = await itemApi.getTransactionItems(transaction)
+            let data = await result.json()
 
             commit('retrieveItemsMutation', data)
         },

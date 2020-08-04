@@ -24,21 +24,21 @@ export default {
 
     actions: {
         async addVaultAction({ commit, state }, data) {
-            const dto = {
+            let dto = {
                 name: data.name,
                 sum: data.sum,
                 accountId: data.accountId
             }
 
-            const result = await vaultApi.add(dto)
-            const response = await result.json()
+            let result = await vaultApi.add(dto)
+            let response = await result.json()
 
             commit('addVaultMutation', response)
         },
 
         async retrieveVaultsAction({ commit, dispatch }, account) {
-            const result = await vaultApi.getAccountVaults(account)
-            const data = await result.json()
+            let result = await vaultApi.getAccountVaults(account)
+            let data = await result.json()
 
             commit('retrieveVaultsMutation', data)
         },

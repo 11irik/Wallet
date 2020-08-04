@@ -36,12 +36,12 @@
 </template>
 
 <script>
-    import CategoryDialog from "../dialogs/CategoryDialog.vue";
-    import CategoryTagsDialog from "../dialogs/CategoryTagsDialog.vue";
-    import {mapState} from "vuex";
+    import CategoryDialog from '../dialogs/CategoryDialog.vue';
+    import CategoryTagsDialog from '../dialogs/CategoryTagsDialog.vue';
+    import {mapState} from 'vuex';
 
     export default {
-        name: "CategoryList",
+        name: 'CategoryList',
 
         components: {
             CategoryDialog,

@@ -45,10 +45,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "VaultDialog",
+        name: 'VaultDialog',
 
         data() {
             return {
@@ -67,14 +67,14 @@
         methods: {
             addVault() {
                 const data = {name: this.name, sum: this.sum, accountId: this.defaultAccount.id};
-                this.$store.dispatch('addVaultAction', data)
-                this.name = ''
-                this.sum = ''
-                this.activator = false
+                this.$store.dispatch('addVaultAction', data);
+                this.name = '';
+                this.sum = '';
+                this.activator = false;
             },
 
             close() {
-                this.activator = false
+                this.activator = false;
             },
         },
     }

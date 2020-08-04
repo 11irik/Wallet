@@ -1,10 +1,11 @@
 <script>
-    import {Bar} from "vue-chartjs";
+    import {Bar} from 'vue-chartjs';
 
     export default {
         extends: Bar,
 
         props: {
+            label: String,
             data: Array
         },
 
@@ -14,8 +15,8 @@
                     labels: this.data[0],
                     datasets: [
                         {
-                            label: "Суммы по меткам",
-                            backgroundColor: "#f87979",
+                            label: this.label,
+                            backgroundColor: '#f87979',
                             data: this.data[1]
                         }
                     ]

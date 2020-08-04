@@ -24,18 +24,18 @@
 </template>
 
 <script>
-    import store from "../store/store";
+    import store from '../store/store';
 
     export default {
-        name: "DatePicker",
+        name: 'DatePicker',
 
         computed: {
             date: {
                 get: () => {
-                    return store.getters.date
+                    return store.getters.date;
                 },
                 set: (newValue) => {
-                    store.dispatch('setDateAction', newValue)
+                    store.dispatch('setDateAction', newValue);
                 }
             },
         },

@@ -50,11 +50,11 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import NavigationDrawer from "./NavigationDrawer.vue";
+    import {mapState} from 'vuex';
+    import NavigationDrawer from './NavigationDrawer.vue';
 
     export default {
-        name: "AppBarBig",
+        name: 'AppBarBig',
 
         components: {
             NavigationDrawer,

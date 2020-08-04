@@ -13,7 +13,7 @@
             <PieChart :key="pieKey" :data="categoriesStats"/>
 
             <v-toolbar-title>Диаграмма по меткам за период</v-toolbar-title>
-            <BarChart :key="barKey" :data="tagsStats"/>
+            <BarChart :key="barKey" label="Суммы по меткам" :data="tagsStats"/>
 
             <v-toolbar-title>Диаграмма по транзакциям в день за период</v-toolbar-title>
             <LineChart :key="lineKey" label="Статистика по дням" :data="daysStats"/>
@@ -25,15 +25,15 @@
 </template>
 
 <script>
-    import PieChart from "../components/charts/PieChart.vue";
-    import BarChart from "../components/charts/BarChart.vue";
-    import LineChart from "../components/charts/LineChart.vue"
-    import RangeDatePicker from "../components/RangeDatePicker.vue";
-    import {mapState} from "vuex";
+    import PieChart from '../components/charts/PieChart.vue';
+    import BarChart from '../components/charts/BarChart.vue';
+    import LineChart from '../components/charts/LineChart.vue';
+    import RangeDatePicker from '../components/RangeDatePicker.vue';
+    import {mapState} from 'vuex';
 
 
     export default {
-        name: "App",
+        name: 'App',
         components: {
             PieChart,
             BarChart,
@@ -44,7 +44,6 @@
         created: function () {
             this.getData()
         },
-
 
         data() {
             return {
@@ -57,12 +56,13 @@
 
         computed: {
             sum() {
-                let sum = 0.0
+                let sum = 0.0;
                 if (this.usersStats[1] != null) {
                     let a = this.usersStats[1]
                     a.forEach(element => sum += element)
                 }
-                return sum
+
+                return sum;
             },
 
             ...mapState({
@@ -84,10 +84,10 @@
                     dateEnd: this.dates[1]
                 }
 
-                this.$store.dispatch('retrieveUsersStatsAction', dto)
-                this.$store.dispatch('retrieveTagsStatsAction', dto)
-                this.$store.dispatch('retrieveDaysStatsAction', dto)
-                this.$store.dispatch('retrieveCategoriesStatsAction', dto)
+                this.$store.dispatch('retrieveUsersStatsAction', dto);
+                this.$store.dispatch('retrieveTagsStatsAction', dto);
+                this.$store.dispatch('retrieveDaysStatsAction', dto);
+                this.$store.dispatch('retrieveCategoriesStatsAction', dto);
 
                 //fixme
                 this.sleep(100).then(() => {
@@ -95,13 +95,14 @@
                     this.lineKey += 1
                     this.userPieKey += 1
                     this.pieKey += 1
-                })
+                });
             },
 
             sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
-        }
+        },
+
     };
 </script>
 

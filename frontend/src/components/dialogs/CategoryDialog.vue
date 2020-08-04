@@ -27,10 +27,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "CategoryDialog",
+        name: 'CategoryDialog',
 
         props: {
             visible: Boolean,
@@ -52,13 +52,13 @@
 
         methods: {
             addCategory() {
-                const dto = {
-                    "accountId": this.defaultAccount.id,
-                    "name": this.categoryName
+                let dto = {
+                    'accountId': this.defaultAccount.id,
+                    'name': this.categoryName
                 };
 
                 this.$store.dispatch('addCategoryAction', dto)
-                this.categoryName = ""
+                this.categoryName = ''
                 this.onClose()
             },
         },

@@ -37,14 +37,14 @@
 </template>
 
 <script>
-    import TagDialog from "../dialogs/TagDialog.vue";
-    import {mapState} from "vuex";
+    import TagDialog from '../dialogs/TagDialog.vue';
+    import {mapState} from 'vuex';
 
     export default {
-        name: "TagList",
+        name: 'TagList',
 
         components: {
-            TagDialog
+            TagDialog,
         },
 
         data() {
@@ -62,11 +62,11 @@
         },
         methods: {
             openDialogTag() {
-                this.dialogTag = true
+                this.dialogTag = true;
             },
 
             handleCloseDialogTag() {
-                this.dialogTag = false
+                this.dialogTag = false;
             }
         }
     }

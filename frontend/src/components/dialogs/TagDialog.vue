@@ -27,10 +27,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "TagDialog",
+        name: 'TagDialog',
 
         props: {
             visible: Boolean,
@@ -51,14 +51,14 @@
 
         methods: {
             addTag() {
-                const dto = {
-                    "accountId": this.defaultAccount.id,
-                    "name": this.tagName
+                let dto = {
+                    'accountId': this.defaultAccount.id,
+                    'name': this.tagName
                 };
 
-                this.$store.dispatch('addTagAction', dto)
-                this.tagName = ""
-                this.onClose()
+                this.$store.dispatch('addTagAction', dto);
+                this.tagName = '';
+                this.onClose();
             },
         },
     }

@@ -27,10 +27,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
+    import {mapState} from 'vuex';
 
     export default {
-        name: "UserDialog",
+        name: 'UserDialog',
 
         props: {
             visible: Boolean,
@@ -51,13 +51,13 @@
 
         methods: {
             inviteUser() {
-                const dto = {
-                    "accountId": this.defaultAccount.id,
-                    "email": this.userEmail
+                let dto = {
+                    'accountId': this.defaultAccount.id,
+                    'email': this.userEmail
                 };
 
                 this.$store.dispatch('inviteUserAction', dto)
-                this.userEmail = ""
+                this.userEmail = ''
                 this.onClose()
             },
         },

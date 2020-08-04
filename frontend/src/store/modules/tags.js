@@ -24,15 +24,15 @@ export default {
 
     actions: {
         async addTagAction({ commit, state }, tag) {
-            const result = await tagApi.add(tag)
-            const data = await result.json()
+            let result = await tagApi.add(tag)
+            let data = await result.json()
 
             commit('addTagMutation', data)
         },
 
         async retrieveTagsAction({ commit, dispatch }, account) {
-            const result = await tagApi.getAccountTags(account)
-            const data = await result.json()
+            let result = await tagApi.getAccountTags(account)
+            let data = await result.json()
 
             commit('retrieveTagsMutation', data)
         },

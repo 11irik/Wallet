@@ -37,14 +37,14 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
-    import TransactionItemsDialog from "../dialogs/TransactionItemsDialog.vue";
+    import {mapState} from 'vuex';
+    import TransactionItemsDialog from '../dialogs/TransactionItemsDialog.vue';
 
     export default {
-        name: "TransactionList",
+        name: 'TransactionList',
 
         components: {
-            TransactionItemsDialog
+            TransactionItemsDialog,
         },
 
         data: () => ({
@@ -59,13 +59,13 @@
 
         methods: {
             openItemsDialog(transaction) {
-                this.$store.dispatch('selectTransactionAction', transaction)
-                this.$store.dispatch('retrieveItemsAction', transaction)
-                this.dialogItems = true
+                this.$store.dispatch('selectTransactionAction', transaction);
+                this.$store.dispatch('retrieveItemsAction', transaction);
+                this.dialogItems = true;
             },
 
             handleCloseItemsDialog() {
-                this.dialogItems = false
+                this.dialogItems = false;
             }
         },
     }

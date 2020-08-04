@@ -28,20 +28,19 @@ export default {
         retrieveTransactionsMutation(state, transactions) {
             state.transactions = transactions
         },
-
     },
 
     actions: {
         async addTransactionAction({commit, state}, transaction) {
-            const result = await transactionApi.add(transaction)
-            const data = await result.json()
+            let result = await transactionApi.add(transaction)
+            let data = await result.json()
 
             commit('addTransactionMutation', data)
         },
 
         async retrieveTransactionsAction({commit, state}, dto) {
-            const result = await transactionApi.getTransactions(dto)
-            const data = await result.json()
+            let result = await transactionApi.getTransactions(dto)
+            let data = await result.json()
 
             commit('retrieveTransactionsMutation', data)
         },

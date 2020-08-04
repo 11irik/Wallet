@@ -20,13 +20,13 @@
 </template>
 
 <script>
-    import UserList from "../components/lists/UserList.vue";
-    import TagList from "../components/lists/TagList.vue";
-    import CategoryList from "../components/lists/CategoryList.vue";
-    import {mapState} from "vuex";
+    import UserList from '../components/lists/UserList.vue';
+    import TagList from '../components/lists/TagList.vue';
+    import CategoryList from '../components/lists/CategoryList.vue';
+    import {mapState} from 'vuex';
 
     export default {
-        name: "Home",
+        name: 'Home',
 
         components: {
             UserList,
@@ -37,10 +37,10 @@
         computed: {
             ...mapState({
                 //todo rename default to selected
-                defaultAccount: state => state.defaultAccount.defaultAccount
+                defaultAccount: state => state.defaultAccount.defaultAccount,
             }),
         },
-    }
+    };
 </script>
 
 <style scoped>
