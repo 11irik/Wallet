@@ -33,7 +33,8 @@
 
 
     export default {
-        name: 'App',
+        name: 'StatisticsPage',
+
         components: {
             PieChart,
             BarChart,

@@ -49,7 +49,7 @@
     import {mapState} from 'vuex';
 
     export default {
-        name: 'Profile',
+        name: 'ProfilePage',
         computed: {
             ...mapState({
                 profile: state => state.profile.profile,
