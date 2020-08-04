@@ -1,7 +1,7 @@
 <template>
     <v-dialog
             ref="dialog"
-            v-model="modal"
+            v-model="visible"
             :return-value.sync="date"
             persistent
             width="290px"
@@ -17,14 +17,13 @@
         </template>
         <v-date-picker v-model="date" range no-title scrollable>
             <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+            <v-btn text color="primary" @click="visible = false">Cancel</v-btn>
             <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
         </v-date-picker>
     </v-dialog>
 </template>
 
 <script>
-    import {mapState} from "vuex";
     import store from "../store/store";
 
     export default {
@@ -36,6 +35,11 @@
                     return store.getters.dates
                 },
                 set: (newValue) => {
+                    if (newValue[0] > newValue[1]){
+                        let tmp = newValue[0]
+                        newValue[0] = newValue[1]
+                        newValue[1] = tmp
+                    }
                     store.dispatch('setDatesAction', newValue)
                 }
             },
@@ -44,7 +48,7 @@
         methods: {},
 
         data: () => ({
-            modal: false,
+            visible: false,
         }),
     }
 </script>

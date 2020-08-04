@@ -4,7 +4,7 @@
             <v-list-item
                     v-for="transaction in transactions"
                     :key="transaction.id"
-                    @click="openDialogItems(transaction)"
+                    @click="openItemsDialog(transaction)"
             >
 
                 <v-list-item-avatar v-if="!transaction.transactionTag.getting">
@@ -32,7 +32,7 @@
             </v-list-item>
         </v-list>
 
-        <TransactionItemsDialog v-model="dialogItems"></TransactionItemsDialog>
+        <TransactionItemsDialog :visible="dialogItems" :onClose="handleCloseItemsDialog"></TransactionItemsDialog>
     </div>
 </template>
 
@@ -54,16 +54,19 @@
         computed: {
             ...mapState({
                 transactions: state => state.transactions.transactions,
-                defaultAccount: state => state.defaultAccount.defaultAccount
             }),
         },
 
         methods: {
-            openDialogItems(transaction) {
+            openItemsDialog(transaction) {
                 this.$store.dispatch('selectTransactionAction', transaction)
                 this.$store.dispatch('retrieveItemsAction', transaction)
                 this.dialogItems = true
             },
+
+            handleCloseItemsDialog() {
+                this.dialogItems = false
+            }
         },
     }
 </script>

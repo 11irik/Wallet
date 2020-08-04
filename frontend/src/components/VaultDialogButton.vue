@@ -1,22 +1,5 @@
 <template>
-    <v-dialog v-model="show" persistent max-width="600px">
-        <template v-slot:activator="{ on }">
-            <v-card-text style="height: 100px; position: relative">
-
-                <v-btn
-                        fixed
-                        dark
-                        fab
-                        bottom
-                        right
-                        color="orange"
-                        v-on="on"
-                >
-                    <v-icon>mdi-plus</v-icon>
-                </v-btn>
-            </v-card-text>
-        </template>
-
+    <v-dialog v-model="activator" persistent max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">Новый счет</span>
@@ -41,36 +24,41 @@
                 <v-btn color="blue darken-1" text @click="addVault">Сохранить</v-btn>
             </v-card-actions>
         </v-card>
+
+        <template v-slot:activator="{ on }">
+            <v-card-text style="height: 100px; position: relative">
+
+                <v-btn
+                        fixed
+                        dark
+                        fab
+                        bottom
+                        right
+                        color="orange"
+                        v-on="on"
+                >
+                    <v-icon>mdi-plus</v-icon>
+                </v-btn>
+            </v-card-text>
+        </template>
     </v-dialog>
 </template>
 
 <script>
     import {mapState} from "vuex";
-    import defaultAccount from "../../store/modules/defaultAccount";
 
     export default {
         name: "VaultDialog",
-
-        props: {
-            value: Boolean
-        },
 
         data() {
             return {
                 name: '',
                 sum: '',
+                activator: false
             }
         },
 
         computed: {
-            show: {
-                get() {
-                    return this.value
-                },
-                set(value) {
-                    this.$emit('input', value)
-                }
-            },
             ...mapState({
                 defaultAccount: state => state.defaultAccount.defaultAccount,
             }),
@@ -82,11 +70,11 @@
                 this.$store.dispatch('addVaultAction', data)
                 this.name = ''
                 this.sum = ''
-                this.show = false
+                this.activator = false
             },
 
             close() {
-                this.show = false
+                this.activator = false
             },
         },
     }

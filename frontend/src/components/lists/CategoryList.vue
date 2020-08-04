@@ -1,25 +1,27 @@
 <template>
     <div>
-        <CategoryDialog v-model="dialogCategory"></CategoryDialog>
-        <CategoryTagsDialog v-bind:dialog="dialogCategoryTags" v-bind:selectedCategory="selectedCategory"></CategoryTagsDialog>
+        <CategoryDialog :visible="dialogCategory" :onClose="handleCloseCategoryDialog"/>
+        <CategoryTagsDialog :visible="dialogCategoryTags" :category="selectedCategory" :onClose="handleCloseCategoryTagsDialog"/>
 
         <v-card max-width="500" class="mx-auto">
             <v-list>
                 <v-list-item-title class="headline mb-1">Категории</v-list-item-title>
+
                 <v-list-item
                         v-for="item in categories"
                         :key="item.id"
                         @click="openCategoryTagsDial(item)"
                 >
-
                     <v-list-item-content>
                         <v-list-item-title v-text="item.name"></v-list-item-title>
                     </v-list-item-content>
+
                     <v-list-item-icon>
                         <v-icon>mdi-format-align-justify</v-icon>
                     </v-list-item-icon>
                 </v-list-item>
 
+<!--                todo think about rules and default users abilities-->
                 <v-list-item v-if="profile.id === defaultAccount.owner.id" @click="openDial">
                     <v-list-item-icon>
                         <v-icon>mdi-plus</v-icon>
@@ -34,7 +36,6 @@
 </template>
 
 <script>
-    //FIXME
     import CategoryDialog from "../dialogs/CategoryDialog.vue";
     import CategoryTagsDialog from "../dialogs/CategoryTagsDialog.vue";
     import {mapState} from "vuex";
@@ -51,16 +52,14 @@
             return {
                 dialogCategory: false,
                 dialogCategoryTags: false,
-                selectedCategory: null
+                selectedCategory: {}
             }
         },
 
         computed: {
             ...mapState({
                 defaultAccount: state => state.defaultAccount.defaultAccount,
-                accounts: state => state.accounts.accounts,
                 profile: state => state.profile.profile,
-                tags: state => state.tags.tags,
                 categories: state => state.categories.categories,
             }),
         },
@@ -68,6 +67,14 @@
         methods: {
             openDial() {
                 this.dialogCategory = true
+            },
+
+            handleCloseCategoryDialog() {
+                this.dialogCategory = false
+            },
+
+            handleCloseCategoryTagsDialog() {
+                this.dialogCategoryTags = false
             },
 
             openCategoryTagsDial(category) {

@@ -15,6 +15,7 @@
                 <CategoryList></CategoryList>
             </v-col>
         </v-row>
+
     </v-container>
 </template>
 
@@ -33,24 +34,13 @@
             CategoryList,
         },
 
-        data() {
-            return {
-            }
-        },
-
-
         computed: {
             ...mapState({
+                //todo rename default to selected
                 defaultAccount: state => state.defaultAccount.defaultAccount
             }),
         },
-
-        methods: {
-
-        }
     }
-
-
 </script>
 
 <style scoped>

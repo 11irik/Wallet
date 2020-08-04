@@ -1,19 +1,20 @@
 <template>
-    <v-dialog v-model="show" persistent max-width="600px">
+    <v-dialog v-model="visible" persistent max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">Список покупок</span>
             </v-card-title>
             <v-card-text>
-
                 <v-container>
                     <v-row>
                         <v-col cols="12">
                             <v-text-field label="Описание" required v-model="itemDescription"></v-text-field>
                         </v-col>
+
                         <v-col cols="12">
                             <v-text-field label="Цена" required v-model="itemPrice"></v-text-field>
                         </v-col>
+
                         <v-col cols="12">
                             <v-select
                                     :items="tags"
@@ -29,20 +30,16 @@
                             <v-col cols="6">
                                 <v-btn @click="addItem">Добавить</v-btn>
                             </v-col>
+
                             <v-col cols="6">
-                                <v-btn @click="close">Закрыть</v-btn>
+                                <v-btn @click="onClose">Закрыть</v-btn>
                             </v-col>
                         </v-row>
                     </v-row>
-
-
                     <ItemList></ItemList>
-
-
                 </v-container>
             </v-card-text>
         </v-card>
-
     </v-dialog>
 </template>
 
@@ -58,18 +55,11 @@
         },
 
         props: {
-            value: Boolean
+            visible: Boolean,
+            onClose: Function,
         },
 
         computed: {
-            show: {
-                get() {
-                    return this.value
-                },
-                set(value) {
-                    this.$emit('input', value)
-                }
-            },
             ...mapState({
                 tags: state => state.tags.tags,
                 defaultAccount: state => state.defaultAccount.defaultAccount,
@@ -86,10 +76,6 @@
         },
 
         methods: {
-            close() {
-                this.show = false
-            },
-
             addItem() {
                 const dto = {
                     transactionId: this.selectedTransaction.id,
@@ -103,10 +89,6 @@
                 this.itemDescription = ''
                 this.itemPrice = ''
                 this.itemTag = ''
-            },
-
-            deleteItem(item) {
-
             },
         },
     }

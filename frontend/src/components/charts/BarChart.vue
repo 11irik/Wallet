@@ -1,26 +1,22 @@
 <script>
     import {Bar} from "vue-chartjs";
-    import {mapState} from "vuex";
 
     export default {
         extends: Bar,
 
-        computed: {
-            ...mapState({
-                tagsStats: state => state.tagsStats.tagsStats,
-            }),
+        props: {
+            data: Array
         },
-
 
         mounted() {
             this.renderChart(
                 {
-                    labels: this.tagsStats[0],
+                    labels: this.data[0],
                     datasets: [
                         {
                             label: "Суммы по меткам",
                             backgroundColor: "#f87979",
-                            data: this.tagsStats[1]
+                            data: this.data[1]
                         }
                     ]
                 },

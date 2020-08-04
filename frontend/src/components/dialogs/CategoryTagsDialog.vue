@@ -1,14 +1,14 @@
 <template>
-    <v-dialog v-model="show" persistent max-width="600px">
+    <v-dialog v-model="visible" persistent max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">Метки категории</span>
             </v-card-title>
-            <v-card-text>
 
+            <v-card-text>
                 <v-container>
                     <v-col cols="6" sm="6" md="6">
-                        <v-btn @click="close">Закрыть</v-btn>
+                        <v-btn @click="onClose">Закрыть</v-btn>
                     </v-col>
 
                     <v-row>
@@ -27,13 +27,14 @@
                             </v-list>
                         </v-col>
 
+<!--                        todo remove tags that already added-->
                         <v-col cols="6" sm="6" md="6">
                             <v-list two-line subheader class="overflow-y-auto">
                                 <v-subheader inset>Доступные</v-subheader>
                                 <v-list-item
                                         v-for="item in tags"
                                         :key="item.id"
-                                        @click="insertTag(item)"
+                                        @click="addTag(item)"
                                 >
                                     <v-list-item-content>
                                         <v-list-item-title v-text="item.name"></v-list-item-title>
@@ -42,99 +43,50 @@
                             </v-list>
                         </v-col>
                     </v-row>
-
                 </v-container>
             </v-card-text>
         </v-card>
-
     </v-dialog>
 </template>
 
 <script>
     import {mapState} from "vuex";
-    //FIXME
+
     export default {
         name: "CategoryTagsDialog",
 
         props: {
-            value: Boolean,
+            visible: Boolean,
+            onClose: Function,
+            category: Object
         },
 
         computed: {
-            show: {
-                get() {
-                    return this.value
-                },
-                set(value) {
-                    this.$emit('input', value)
-                }
-            },
-            category: () => {
-                return {tags: []}
-            },
             ...mapState({
-                profile: state => state.profile.profile,
-                accounts: state => state.accounts.accounts,
                 tags: state => state.tags.tags,
-                categories: state => state.categories.categories,
                 defaultAccount: state => state.defaultAccount.defaultAccount,
             }),
-
-        },
-
-        data() {
-            return {
-                userEmail: '',
-                dialogTag: false,
-                dialogCategory: false,
-                dialogCategoryTags: false,
-                categoryName: '',
-                tagName: '',
-            }
         },
 
         methods: {
-            addTag() {
-                var dto = {
-                    "accountId": this.defaultAccount.id,
-                    "name": this.tagName
-                }
-                this.$store.dispatch('addTagAction', dto)
-                this.dialogTag = false
-                this.tagName = ""
-            },
-
-            insertTag(tag) {
-                var dto = {
-                    "categoryId": this.selectedCategory.id,
+            addTag(tag) {
+                const dto = {
+                    "categoryId": this.category.id,
                     "tagId": tag.id
                 }
 
                 this.$store.dispatch('insertTagAction', dto)
             },
 
+
             removeTag(tag) {
-                var dto = {
-                    "categoryId": this.selectedCategory.id,
+                const dto = {
+                    "categoryId": this.category.id,
                     "tagId": tag.id
                 }
+
                 this.$store.dispatch('removeTagAction', dto)
             },
-
-
-            addCategory() {
-                var dto = {
-                    "accountId": this.defaultAccount.id,
-                    "name": this.categoryName
-                }
-                this.$store.dispatch('addCategoryAction', dto)
-                this.dialogCategory = false
-                this.categoryName = ""
-            },
-
-            close() {
-                this.show = false
-            }
         },
     }
 </script>

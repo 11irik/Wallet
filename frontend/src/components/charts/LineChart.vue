@@ -1,24 +1,22 @@
 <script>
     import {Line} from "vue-chartjs";
-    import {mapState} from "vuex";
 
     export default {
         extends: Line,
 
-        computed: {
-            ...mapState({
-                daysStats: state => state.daysStats.daysStats,
-            }),
+        props: {
+            label: String,
+            data: Array
         },
 
         mounted() {
             this.renderChart(
                 {
-                    labels: this.daysStats[0],
+                    labels: this.data[0],
                     datasets: [
                         {
-                            label: "Сумма в день",
-                            data: this.daysStats[1],
+                            label: this.label,
+                            data: this.data[1],
                             backgroundColor: "transparent",
                             borderColor: "rgba(1, 116, 188, 0.50)",
                             pointBackgroundColor: "rgba(171, 71, 188, 1)"

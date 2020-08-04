@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-navigation-drawer
-                v-model="show"
+                v-model="visible"
                 absolute
                 temporary
         >
@@ -11,7 +11,7 @@
                         <v-list-item-title>Группы</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item-group v-model="model" mandatory color="indigo">
+                <v-list-item-group mandatory color="indigo">
                     <v-list-item
                             v-for="(account) in accounts"
                             :key="account.id"
@@ -37,9 +37,9 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
-
         </v-navigation-drawer>
-        <AccountDialog v-model="dialogAccount"></AccountDialog>
+
+        <AccountDialog :visible="dialogAccount" :onClose="handleCloseAccountDialog"></AccountDialog>
     </div>
 </template>
 
@@ -59,13 +59,11 @@
         },
 
         data: () => ({
-            model: 0,
             dialogAccount: false,
-            accountName: '',
         }),
 
         computed: {
-            show: {
+            visible: {
                 get() {
                     return this.value
                 },
@@ -76,7 +74,6 @@
             ...mapState({
                 accounts: state => state.accounts.accounts
             }),
-
         },
 
         methods: {
@@ -90,7 +87,11 @@
 
             openDialogAccount() {
                 this.dialogAccount = true
-            }
+            },
+
+            handleCloseAccountDialog() {
+                this.dialogAccount = false
+            },
         },
     }
 </script>

@@ -1,13 +1,7 @@
 <template>
     <div>
-
-        <UserDialog v-model="dialogUser"></UserDialog>
-
-        <v-card
-                max-width="500"
-                class="mx-auto"
-        >
-
+        <UserDialog :visible="dialogUser" :onClose="handleCloseUserDialog"></UserDialog>
+        <v-card max-width="500" class="mx-auto">
             <v-list>
                 <v-list-item-title class="headline mb-1">Пользователи</v-list-item-title>
 
@@ -27,7 +21,9 @@
                         <v-img :src="item.userpic"></v-img>
                     </v-list-item-avatar>
                 </v-list-item>
-                <v-list-item v-if="profile.id === defaultAccount.owner.id" @click="openDial">
+
+                <!--                todo user rules-->
+                <v-list-item v-if="profile.id === defaultAccount.owner.id" @click="openUserDialog">
                     <v-list-item-icon>
                         <v-icon>mdi-plus</v-icon>
                     </v-list-item-icon>
@@ -61,18 +57,18 @@
         computed: {
             ...mapState({
                 defaultAccount: state => state.defaultAccount.defaultAccount,
-                accounts: state => state.accounts.accounts,
                 profile: state => state.profile.profile,
-                tags: state => state.tags.tags,
-                categories: state => state.categories.categories,
             }),
         },
 
-
         methods: {
-            openDial() {
+            openUserDialog() {
                 this.dialogUser = true
             },
+
+            handleCloseUserDialog() {
+                this.dialogUser = false
+            }
         }
     }
 </script>

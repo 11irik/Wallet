@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="show" persistent max-width="600px">
+    <v-dialog v-model="visible" persistent max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">Новая группа</span>
@@ -16,7 +16,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Закрыть</v-btn>
+                <v-btn color="blue darken-1" text @click="onClose">Закрыть</v-btn>
                 <v-btn color="blue darken-1" text @click="addAccount">Сохранить</v-btn>
             </v-card-actions>
         </v-card>
@@ -30,23 +30,14 @@
         name: "AccountDialog",
 
         props: {
-            value: Boolean
+            visible: Boolean,
+            onClose: Function,
         },
 
         computed: {
-            show: {
-                get() {
-                    return this.value
-                },
-                set(value) {
-                    this.$emit('input', value)
-                }
-            },
-
             ...mapState({
                 defaultAccount: state => state.defaultAccount.defaultAccount,
             }),
-
         },
 
         data() {
@@ -57,15 +48,12 @@
 
         methods: {
             addAccount() {
-                var acc = {name: this.accountName}
+                const acc = {name: this.accountName};
                 this.$store.dispatch('addAccountAction', acc)
-                this.dialogAcc = false
-                this.accountName = ''
-            },
 
-            close() {
-                this.show = false
-            }
+                this.accountName = ''
+                this.onClose()
+            },
         },
 
     }

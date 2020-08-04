@@ -1,22 +1,19 @@
 <template>
     <v-container>
+        <v-toolbar-title>Транзакции</v-toolbar-title>
 
-        <!--            <v-toolbar-title>Транзакции</v-toolbar-title>-->
-
-        <RangeDatePicker></RangeDatePicker>
-
+        <RangeDatePicker/>
         <v-btn @click="getTransactions">Найти</v-btn>
 
+        <TransactionList/>
 
-        <TransactionList></TransactionList>
-
-        <TransactionDialog v-model="dialog"></TransactionDialog>
+        <TransactionDialogButton/>
     </v-container>
 </template>
 
 <script>
 
-    import TransactionDialog from "../components/dialogs/TransactionDialog.vue";
+    import TransactionDialogButton from "../components/TransactionDialogButton.vue";
     import RangeDatePicker from "../components/RangeDatePicker.vue";
     import TransactionList from "../components/lists/TransactionList.vue";
     import {mapState} from "vuex";
@@ -25,14 +22,10 @@
         name: "Transactions",
 
         components: {
-            TransactionDialog,
+            TransactionDialogButton,
             RangeDatePicker,
             TransactionList,
         },
-
-        data: () => ({
-            dialog: false,
-        }),
 
         computed: {
             ...mapState({

@@ -1,5 +1,6 @@
 export default {
     state: {
+        //todo rename this!
         profile: frontendData.profile,
     },
 

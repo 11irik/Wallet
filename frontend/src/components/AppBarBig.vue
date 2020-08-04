@@ -9,6 +9,7 @@
                    class="hidden-xs-and-down"
         >
             <v-app-bar-nav-icon v-if="profile" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
             <v-btn text
                    v-if="profile"
                    @click="showHome">
@@ -20,28 +21,31 @@
                    @click="showVaults">
                 Финансы
             </v-btn>
+
             <v-btn text
                    v-if="profile"
                    @click="showTransactions">
                 Транзакции
             </v-btn>
+
             <v-btn text
                    v-if="profile"
                    @click="showStats">
                 Статистика
-
             </v-btn>
+
             <v-spacer></v-spacer>
+
             <v-btn text
                    v-if="profile"
                    @click="showProfile">
                 {{profile.name}}
             </v-btn>
+
             <v-btn v-if="profile" icon @click="exit">
                 <v-icon>mdi-exit-to-app</v-icon>
             </v-btn>
         </v-app-bar>
-
     </div>
 </template>
 
@@ -67,8 +71,6 @@
                 profile: state => state.profile.profile,
             }),
         },
-
-
 
         methods: {
             showVaults() {

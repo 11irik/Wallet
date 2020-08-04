@@ -1,32 +1,29 @@
 <script>
     import {Pie} from "vue-chartjs";
-    import {mapState} from "vuex";
 
     export default {
         extends: Pie,
 
-        computed: {
-            ...mapState({
-                categoriesStats: state => state.categoriesStats.categoriesStats,
-            }),
+        props: {
+            label: String,
+            data: Array
         },
-
 
         mounted() {
             let colors = []
-            for (let i in this.categoriesStats[1]) {
+            for (let i in this.data[1]) {
                 colors.push(this.getRandomColor());
             }
 
             this.renderChart(
 
                 {
-                    labels: this.categoriesStats[0],
+                    labels: this.data[0],
 
                     datasets: [
                         {
                             backgroundColor: colors,
-                            data: this.categoriesStats[1]
+                            data: this.data[1]
                         }
                     ]
                 },

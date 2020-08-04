@@ -1,21 +1,5 @@
 <template>
-    <v-dialog v-model="show" persistent max-width="600px">
-        <template v-slot:activator="{ on }">
-            <v-card-text style="height: 100px; position: relative">
-
-                <v-btn
-                        fixed
-                        dark
-                        fab
-                        bottom
-                        right
-                        color="orange"
-                        v-on="on"
-                >
-                    <v-icon>mdi-plus</v-icon>
-                </v-btn>
-            </v-card-text>
-        </template>
+    <v-dialog v-model="activator" persistent max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">Новая транзакция</span>
@@ -35,6 +19,7 @@
                         <v-col cols="12" sm="6" md="4">
                             <DatePicker></DatePicker>
                         </v-col>
+
                         <v-col cols="12" sm="6" md="4">
                             <v-select
                                     :items="transactionTags"
@@ -45,6 +30,7 @@
                                     required
                             ></v-select>
                         </v-col>
+
                         <v-col cols="12" sm="6" md="4">
                             <v-select
                                     :items="vaults"
@@ -65,13 +51,29 @@
                 <v-btn color="blue darken-1" text @click="createTransaction">Сохранить</v-btn>
             </v-card-actions>
         </v-card>
-    </v-dialog>
 
+        <template v-slot:activator="{ on }">
+            <v-card-text style="height: 100px; position: relative">
+
+                <v-btn
+                        fixed
+                        dark
+                        fab
+                        bottom
+                        right
+                        color="orange"
+                        v-on="on"
+                >
+                    <v-icon>mdi-plus</v-icon>
+                </v-btn>
+            </v-card-text>
+        </template>
+    </v-dialog>
 </template>
 
 <script>
     import {mapState} from "vuex";
-    import DatePicker from "../DatePicker.vue";
+    import DatePicker from "./DatePicker.vue";
 
     export default {
         name: "TransactionDialog",
@@ -80,24 +82,10 @@
             DatePicker
         },
 
-        props: {
-            value: Boolean
-        },
-
         computed: {
-            show: {
-                get() {
-                    return this.value
-                },
-                set(value) {
-                    this.$emit('input', value)
-                }
-            },
             ...mapState({
                 vaults: state => state.vaults.vaults,
                 transactionTags: state => state.transactionTags.transactionTags,
-                tags: state => state.tags.tags,
-                defaultAccount: state => state.defaultAccount.defaultAccount,
                 date: state => state.date.date,
             }),
         },
@@ -109,12 +97,13 @@
                 vaultId: '',
                 sum: '',
                 selectedTransaction: '',
+                activator: false
             }
         },
 
         methods: {
             close() {
-                this.show = false
+                this.activator = false
             },
 
             createTransaction() {

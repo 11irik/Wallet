@@ -55,7 +55,6 @@ public class MainController {
             Set<Account> accounts = accountRepo.findByUsers(user);
             data.put("userAccounts", accounts);
 
-
             data.put("defaultAccount", user.getDefaultAccount());
             data.put("categories", categoryRepo.findByAccount(user.getDefaultAccount()));
             data.put("tags", tagRepo.findByAccount(user.getDefaultAccount()));

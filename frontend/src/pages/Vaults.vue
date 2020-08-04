@@ -1,23 +1,17 @@
 <template>
     <v-container>
         <VaultList></VaultList>
-        <VaultDialog v-model="dialog"></VaultDialog>
+        <VaultDialogButton></VaultDialogButton>
     </v-container>
 </template>
 
 <script>
-    import VaultDialog from "../components/dialogs/VaultDialog.vue";
+    import VaultDialogButton from "../components/VaultDialogButton.vue";
     import VaultList from "../components/lists/VaultList.vue";
 
     export default {
         name: "Vaults",
-        components: {VaultDialog, VaultList},
-
-        data() {
-            return {
-                dialog: false,
-            }
-        }
+        components: {VaultDialogButton, VaultList},
     }
 </script>
 

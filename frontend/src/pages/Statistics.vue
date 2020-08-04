@@ -7,31 +7,29 @@
                     <v-btn @click="getData">Найти</v-btn>
                 </v-col>
                 <v-card-title>Всего транзакций за период совершено на: {{sum}} р.</v-card-title>
-
             </v-row>
 
             <v-toolbar-title>Диаграмма по категориям за период</v-toolbar-title>
-            <PieChart :key="pieKey"/>
+            <PieChart :key="pieKey" :data="categoriesStats"/>
 
             <v-toolbar-title>Диаграмма по меткам за период</v-toolbar-title>
-            <BarChart :key="barKey"/>
+            <BarChart :key="barKey" :data="tagsStats"/>
 
             <v-toolbar-title>Диаграмма по транзакциям в день за период</v-toolbar-title>
-            <LineChart :key="lineKey"/>
+            <LineChart :key="lineKey" label="Статистика по дням" :data="daysStats"/>
 
             <v-toolbar-title>Диаграмма по пользователям за период</v-toolbar-title>
-            <PieChartUser :key="userPieKey"/>
+            <PieChart :key="userPieKey" :data="usersStats"/>
         </div>
     </v-container>
 </template>
 
 <script>
-    import PieChart from "components/charts/PieChart.vue";
-    import BarChart from "components/charts/BarChart.vue";
-    import LineChart from "components/charts/LineChart.vue"
-    import PieChartUser from "components/charts/PieChartUser.vue";
+    import PieChart from "../components/charts/PieChart.vue";
+    import BarChart from "../components/charts/BarChart.vue";
+    import LineChart from "../components/charts/LineChart.vue"
     import RangeDatePicker from "../components/RangeDatePicker.vue";
-    import {mapGetters, mapState} from "vuex";
+    import {mapState} from "vuex";
 
 
     export default {
@@ -40,7 +38,6 @@
             PieChart,
             BarChart,
             LineChart,
-            PieChartUser,
             RangeDatePicker
         },
 
@@ -51,7 +48,6 @@
 
         data() {
             return {
-                menu1: false,
                 pieKey: 0,
                 barKey: 1,
                 lineKey: 2,
@@ -68,31 +64,24 @@
                 }
                 return sum
             },
+
             ...mapState({
                 defaultAccount: state => state.defaultAccount.defaultAccount,
+                dates: state => state.dates.dates,
+
+                categoriesStats: state => state.categoriesStats.categoriesStats,
+                tagsStats: state => state.tagsStats.tagsStats,
+                daysStats: state => state.daysStats.daysStats,
                 usersStats: state => state.usersStats.usersStats,
-                dates: state => state.dates.dates
             }),
         },
 
         methods: {
             getData() {
-
-                var dto
-
-                if (this.dates[0] > this.dates[1]){
-                    dto = {
-                        accountId: this.defaultAccount.id,
-                        dateStart: this.dates[1],
-                        dateEnd: this.dates[0]
-                    }
-                }
-                else {
-                    dto = {
-                        accountId: this.defaultAccount.id,
-                        dateStart: this.dates[0],
-                        dateEnd: this.dates[1]
-                    }
+                const dto = {
+                    accountId: this.defaultAccount.id,
+                    dateStart: this.dates[0],
+                    dateEnd: this.dates[1]
                 }
 
                 this.$store.dispatch('retrieveUsersStatsAction', dto)
@@ -100,21 +89,18 @@
                 this.$store.dispatch('retrieveDaysStatsAction', dto)
                 this.$store.dispatch('retrieveCategoriesStatsAction', dto)
 
-
-                this.sleep(200).then(() => {
+                //fixme
+                this.sleep(100).then(() => {
                     this.barKey += 1
                     this.lineKey += 1
                     this.userPieKey += 1
                     this.pieKey += 1
                 })
-
-
             },
 
             sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
-
         }
     };
 </script>
