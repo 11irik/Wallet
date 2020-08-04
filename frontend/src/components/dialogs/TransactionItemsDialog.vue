@@ -36,7 +36,8 @@
                             </v-col>
                         </v-row>
                     </v-row>
-                    <ItemList></ItemList>
+
+                    <ItemList :items="items"/>
                 </v-container>
             </v-card-text>
         </v-card>
@@ -57,13 +58,16 @@
         props: {
             visible: Boolean,
             onClose: Function,
+            transaction: Object,
         },
 
         computed: {
+            items() {
+                return this.$store.getters.items
+            },
             ...mapState({
                 tags: state => state.tags.tags,
                 defaultAccount: state => state.defaultAccount.defaultAccount,
-                selectedTransaction: state => state.selectedTransaction.selectedTransaction,
             }),
         },
 
@@ -78,7 +82,7 @@
         methods: {
             addItem() {
                 let dto = {
-                    transactionId: this.selectedTransaction.id,
+                    transactionId: this.transaction.id,
                     itemName: this.itemDescription,
                     itemPrice: this.itemPrice,
                     tagId: this.itemTag

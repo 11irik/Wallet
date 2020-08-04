@@ -10,9 +10,9 @@
 </template>
 
 <script>
-    import NavigationDrawer from "./components/NavigationDrawer.vue";
-    import AppBarSmall from "./components/AppBarSmall.vue";
-    import AppBarBig from "./components/AppBarBig.vue";
+    import NavigationDrawer from './components/NavigationDrawer.vue';
+    import AppBarSmall from './components/AppBarSmall.vue';
+    import AppBarBig from './components/AppBarBig.vue';
 
     export default {
         components: {

@@ -41,14 +41,6 @@
                 vaults: state => state.vaults.vaults,
             }),
         },
-
-        data() {
-            return {
-                dialog: false,
-                name: '',
-                sum: '',
-            }
-        },
     }
 </script>
 

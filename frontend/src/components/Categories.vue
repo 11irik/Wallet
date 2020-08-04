@@ -1,28 +1,20 @@
 <template>
     <div>
         <CategoryDialog :visible="dialogCategory" :onClose="handleCloseCategoryDialog"/>
-        <CategoryTagsDialog :visible="dialogCategoryTags" :category="selectedCategory" :onClose="handleCloseCategoryTagsDialog"/>
+        <CategoryTagsDialog :visible="dialogCategoryTags"
+                            :category="selectedCategory"
+                            :onClose="handleCloseCategoryTagsDialog"
+        />
 
         <v-card max-width="500" class="mx-auto">
+
             <v-list>
                 <v-list-item-title class="headline mb-1">Категории</v-list-item-title>
 
-                <v-list-item
-                        v-for="item in categories"
-                        :key="item.id"
-                        @click="openCategoryTagsDial(item)"
-                >
-                    <v-list-item-content>
-                        <v-list-item-title v-text="item.name"></v-list-item-title>
-                    </v-list-item-content>
+                <CategoryList :categories="categories" :onItemClick="openCategoryTagsDialog"/>
 
-                    <v-list-item-icon>
-                        <v-icon>mdi-format-align-justify</v-icon>
-                    </v-list-item-icon>
-                </v-list-item>
-
-<!--                todo think about rules and default users abilities-->
-                <v-list-item v-if="profile.id === defaultAccount.owner.id" @click="openDial">
+                <!--            todo think about rules and default users abilities-->
+                <v-list-item v-if="profile.id === defaultAccount.owner.id" @click="openCategoryDialog">
                     <v-list-item-icon>
                         <v-icon>mdi-plus</v-icon>
                     </v-list-item-icon>
@@ -36,16 +28,18 @@
 </template>
 
 <script>
-    import CategoryDialog from '../dialogs/CategoryDialog.vue';
-    import CategoryTagsDialog from '../dialogs/CategoryTagsDialog.vue';
+    import CategoryList from './lists/CategoryList.vue';
+    import CategoryDialog from './dialogs/CategoryDialog.vue';
+    import CategoryTagsDialog from './dialogs/CategoryTagsDialog.vue';
     import {mapState} from 'vuex';
 
     export default {
-        name: 'CategoryList',
+        name: 'Categories',
 
         components: {
             CategoryDialog,
-            CategoryTagsDialog
+            CategoryTagsDialog,
+            CategoryList
         },
 
         data() {
@@ -65,7 +59,7 @@
         },
 
         methods: {
-            openDial() {
+            openCategoryDialog() {
                 this.dialogCategory = true
             },
 
@@ -77,7 +71,7 @@
                 this.dialogCategoryTags = false
             },
 
-            openCategoryTagsDial(category) {
+            openCategoryTagsDialog(category) {
                 this.selectedCategory = category
                 this.dialogCategoryTags = true
             },

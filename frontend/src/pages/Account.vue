@@ -4,15 +4,15 @@
 
         <v-row>
             <v-col cols="12" md="4">
-                <UserList></UserList>
+                <Users/>
             </v-col>
 
             <v-col cols="12" md="4">
-                <TagList></TagList>
+                <TagList/>
             </v-col>
 
             <v-col cols="12" md="4">
-                <CategoryList></CategoryList>
+                <Categories/>
             </v-col>
         </v-row>
 
@@ -20,18 +20,18 @@
 </template>
 
 <script>
-    import UserList from '../components/lists/UserList.vue';
-    import TagList from '../components/lists/TagList.vue';
-    import CategoryList from '../components/lists/CategoryList.vue';
+    import Users from '../components/Users.vue';
+    import TagList from '../components/Tags.vue';
+    import Categories from '../components/Categories.vue';
     import {mapState} from 'vuex';
 
     export default {
         name: 'Home',
 
         components: {
-            UserList,
+            Users,
             TagList,
-            CategoryList,
+            Categories,
         },
 
         computed: {

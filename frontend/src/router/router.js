@@ -4,9 +4,9 @@ import VueRouter from 'vue-router'
 import Auth from '../pages/Auth.vue'
 import Profile from '../pages/Profile.vue'
 import Account from '../pages/Account.vue';
-import Vaults from '../pages/Vaults.vue';
+import VaultPage from '../pages/VaultPage.vue';
 import Statistics from '../pages/Statistics.vue';
-import Transactions from '../pages/Transactions.vue';
+import TransactionPage from '../pages/TransactionPage.vue';
 
 Vue.use(VueRouter)
 
@@ -14,9 +14,9 @@ const routes = [
     {path: '/', component: Account},
     {path: '/auth', component: Auth},
     {path: '/profile', component: Profile},
-    {path: '/vaults', component: Vaults},
+    {path: '/vaults', component: VaultPage},
     {path: '/stats', component: Statistics},
-    {path: '/transactions', component: Transactions},
+    {path: '/transactions', component: TransactionPage},
     {path: '*', component: Profile},
 ]
 

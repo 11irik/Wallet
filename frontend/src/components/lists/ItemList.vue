@@ -4,7 +4,7 @@
         <v-list-item
                 v-for="item in items"
                 :key="item.id"
-                @click="deleteItem(item)"
+                @click=""
         >
             <v-list-item-content>
                 <v-list-item-title>Описание: {{item.name}}</v-list-item-title>
@@ -21,16 +21,8 @@
     export default {
         name: 'ItemList',
 
-        computed: {
-            items() {
-                return this.$store.getters.items
-            },
-        },
-
-        methods: {
-            deleteItem(item) {
-
-            }
+        props: {
+            items: Array
         }
     }
 </script>

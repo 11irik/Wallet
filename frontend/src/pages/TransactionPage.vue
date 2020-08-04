@@ -5,7 +5,7 @@
         <RangeDatePicker/>
         <v-btn @click="getTransactions">Найти</v-btn>
 
-        <TransactionList/>
+        <Transactions/>
 
         <TransactionDialogButton/>
     </v-container>
@@ -15,16 +15,16 @@
 
     import TransactionDialogButton from '../components/TransactionDialogButton.vue';
     import RangeDatePicker from '../components/RangeDatePicker.vue';
-    import TransactionList from '../components/lists/TransactionList.vue';
+    import Transactions from '../components/Transactions.vue';
     import {mapState} from 'vuex';
 
     export default {
-        name: 'Transactions',
+        name: 'TransactionPage',
 
         components: {
             TransactionDialogButton,
             RangeDatePicker,
-            TransactionList,
+            Transactions,
         },
 
         computed: {
