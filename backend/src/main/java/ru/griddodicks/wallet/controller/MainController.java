@@ -26,8 +26,8 @@ public class MainController {
     private final CategoryRepo categoryRepo;
     private final TagRepo tagRepo;
 
-    @Value("${spring.profiles.active:prod}")
-    private String profile;
+//    @Value("${spring.profiles.active:prod}")
+    private String profile = "dev";
 
     @Autowired
     public MainController(MessageRepo messageRepo, AccountRepo accountRepo, VaultRepo vaultRepo, TransactionTagRepo transactionTagRepo, CategoryRepo categoryRepo, TagRepo tagRepo) {
@@ -42,8 +42,12 @@ public class MainController {
 
     @GetMapping
     @JsonView(Views.Mid.class)
-    public String main(Model model, @AuthenticationPrincipal User user) {
+    public String main(Model model, @AuthenticationPrincipal User user1) {
         HashMap<Object, Object> data = new HashMap<>();
+        User user = new User();
+        user.setId("4124");
+        user.setEmail("lykashin.kirill@gmail.com");
+        user.setName("Kirill");
 
         if (user != null) {
             data.put("profile", user);
