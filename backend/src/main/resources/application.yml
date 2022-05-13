@@ -1,0 +1,51 @@
+server.port: 9000
+spring:
+  jackson.serialization.fail-on-empty-beans: false
+#datasource config
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: pgpwd4habr
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
+    generate-ddl: true
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+  session.jdbc.initialize-schema: always
+  session.jdbc.table-name: SPRING_SESSION
+  session.jdbc.schema: classpath:session_tables.sql
+#security config FIXME HIDE THIS
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 1002899845476-2hqslqt96torm67cko2mbmglk2mj8um8.apps.googleusercontent.com
+            clientSecret: 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
+            redirectUri: "{baseurl}/oauth2/callback/{registrationId}"
+            scope:
+              - openid
+              - email
+              - profile
+
+app:
+  auth:
+    tokenSecret: qwerty
+    tokenExpirationMsec: 100 000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:9000/oauth2/redirect
+#security.oauth2.client.accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+#security.oauth2.client.userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+#security.oauth2.client.clientAuthenticationScheme: form
+#security.oauth2.resource.userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+#security.oauth2.resource.preferTokenInfo: true
+
+#spring.datasource.url=jdbc:h2:file:./build/h2db
+#spring.datasource.username=sa
+#spring.datasource.password=password
+#spring.datasource.driverClassName=org.h2.Driver
+#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+#jpa config
